@@ -1,0 +1,28 @@
+{% extends "Shop/base.html" %}
+
+{% block title %} {{ snickerObject.name }} {% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <div class="detail-snicker">
+        <div class="container d-flex">
+            <img src="{{ snickerObject.img.url }}" alt="">
+            <div class="info-detail">
+                <h1>{{ snickerObject.name }}</h1>
+                <p>{{ snickerObject.description }}</p>
+                <div class="raits d-flex">
+                    {% for star in 'пятьь' %}
+                    <img src="{% static './Shop/img/star.png' %}" alt=""
+                    {% if forloop.counter > snickerObject.raits %}
+                    style="filter: grayscale(1);"
+                    {% endif %}
+                    >
+                    {% endfor %}
+                </div>
+                <span>Цена: {{ snickerObject.cost }}₽</span>
+                <a href="{% url 'createOrder' product_id=snickerObject.id %}">Купить</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

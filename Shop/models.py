@@ -8,8 +8,9 @@ class Snickers(models.Model):
     description = models.TextField()
     raits = models.FloatField()
     quantity = models.PositiveIntegerField()
-    cost = models.FloatField()
+    cost = models.PositiveIntegerField()
 
 class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
+    adress = models.TextField(default="1")
     product = models.ForeignKey(Snickers, on_delete=models.SET_NULL, null=True)

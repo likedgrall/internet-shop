@@ -2,6 +2,19 @@
 
 {% block title %} Товары GlebShop {% endblock %}
 
+{% load static %}
+
 {% block content %}
     <h1>Страница создание заказа</h1>
+    <label for="adress">Адрес доставки</label>
+    <form action="{% url "createOrder" product_id=snickerObject.id %}" method="POST">
+        {% csrf_token %}
+        <input name="adress" id="adress" type="text">
+        <button type="submit">Заказать</button>
+    </form>
+    <div class="card-shop">
+        <img src="{{ snickerObject.img.url }}" alt="">
+        <h2>{{ snickerObject.name }}</h2>
+        <span>Цена: {{ snickerObject.cost }}₽</span>
+    </div>
 {% endblock %}

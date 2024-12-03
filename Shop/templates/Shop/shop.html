@@ -5,18 +5,24 @@
 {% block title %} Товары GlebShop {% endblock %}
 
 {% block content %}
+    {% for snicker in snickers %}
     <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="{{ snicker.img.url }}" class="card-img-top" alt="...">
         <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <h5 class="card-title">{{ snicker.name }}</h5>
+        <p class="card-text">{{ snicker.description }}</p>
+        
         <div class="raits d-flex">
-            <img src="{% static './Shop/img/1.png' %}" alt="">
-            <img src="{% static './Shop/img/1.png' %}" alt="">
-            <img src="{% static './Shop/img/1.png' %}" alt="">
-            <img src="{% static './Shop/img/1.png' %}" alt="">
-            <img src="{% static './Shop/img/1.png' %}" alt="">
+            {% for star in 'пятьь' %}
+            <img src="{% static './Shop/img/star.png' %}" alt=""
+            {% if forloop.counter > snicker.raits %}
+            style="filter: grayscale(1);"
+            {% endif %}
+            >
+            {% endfor %}
         </div>
-        <a href="#" class="btn btn-primary">Купить</a>
+        <span>Цена: {{ snicker.cost }}₽</span>
+        <a href="{% url 'detailSnicker' product_id=snicker.id %}" class="btn btn-primary">Купить</a>
     </div>
+    {% endfor %}
 {% endblock %}

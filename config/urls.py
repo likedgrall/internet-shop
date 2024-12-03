@@ -24,8 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('shop/', shop, name="shop"),
     path('', index, name="index"),
-    path('createOrder/', createOrder, name="createOrder"),
+    path('createOrder/<int:product_id>', createOrder, name="createOrder"),
     path('orders/', orders, name="orders"),
+    path('detailSnicker/<int:product_id>', detailSnicker, name="detailSnicker"),
 ]
 
 if settings.DEBUG:
